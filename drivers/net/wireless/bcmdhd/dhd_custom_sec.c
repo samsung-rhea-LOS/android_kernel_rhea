@@ -1203,7 +1203,6 @@ int dhd_sel_ant_from_file(dhd_pub_t *dhd)
 	struct file *fp = NULL;
 	int ret = -1;
 	uint32 ant_val = 0;
-	uint32 btc_mode = 0;
 	char *filepath = "/data/.ant.info";
 	char iovbuf[WLC_IOCTL_SMLEN];
 
@@ -1230,18 +1229,6 @@ int dhd_sel_ant_from_file(dhd_pub_t *dhd)
 			DHD_ERROR(("[WIFI] %s: Invalid value %d read from the file %s\n",
 				__FUNCTION__, ant_val, filepath));
 			return -1;
-		}
-	}
-
-	/* bt coex mode off */
-	if (strstr(fw_path, "_mfg") != NULL) {
-		bcm_mkiovar("btc_mode", (char *)&btc_mode, 4, iovbuf, sizeof(iovbuf));
-		ret = dhd_wl_ioctl_cmd(dhd, WLC_SET_VAR, iovbuf, sizeof(iovbuf), TRUE, 0);
-		if (ret) {
-			DHD_ERROR(("[WIFI] %s: Fail to execute dhd_wl_ioctl_cmd(): "
-				"btc_mode, ret=%d\n",
-				__FUNCTION__, ret));
-			return ret;
 		}
 	}
 
