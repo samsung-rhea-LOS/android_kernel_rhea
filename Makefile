@@ -1,7 +1,7 @@
 VERSION = 3
 PATCHLEVEL = 0
 SUBLEVEL = 101
-EXTRAVERSION = cm12_1_zanin
+EXTRAVERSION =
 NAME = Sodden Ben Lomond
 
 # *DOCUMENTATION*
@@ -1562,6 +1562,9 @@ endif	# skip-makefile
 
 PHONY += FORCE
 FORCE:
+
+dtbs:
+	@echo "Fuck you"
 
 # Declare the contents of the .PHONY variable as phony.  We keep that
 # information in a variable so we can use it in if_changed and friends.
